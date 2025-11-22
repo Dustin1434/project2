@@ -11,7 +11,7 @@
 ## Project Overview
 
 - Our project is to display the Art pieces from all around the world from Art Institute of Chicago
-- Explain what live data set was used, and what you hope users would learn about the data set by using your project
+- The Art Institute of Chicago Api provides great insight..... and what you hope users would learn about the data set by using your project
 
 ## Features
 
