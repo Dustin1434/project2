@@ -2,7 +2,7 @@
 
 ## Team members
 
-- Add all the names of all the team members
+- Dustin and Alyson
 
 ## Live Demo
 
@@ -10,7 +10,7 @@
 
 ## Project Overview
 
-- Briefly describe the purpose of the project.
+- Our project is to display the Art pieces from all around the world from Art Institute of Chicago
 - Explain what live data set was used, and what you hope users would learn about the data set by using your project
 
 ## Features
