@@ -1,42 +1,88 @@
-<div class="title">
-    <div class="content">
-        <h1>{{title}}</h1>
-        <h2>art pieces through api</h2>
-    </div>
+<h1 class="maintitle">{{title}}</h1>
+<p class="description">art pieces through api</p>
+
+<div>
+  <label for="department-filter">Department:</label>
+  <select id="department-filter">
+    <option value="All">All</option>
+  </select>
+
+  <label for="sort-order">Sort:</label>
+  <select id="sort-order">
+    <option value="title_asc">Title (A–Z)</option>
+    <option value="title_desc">Title (Z–A)</option>
+    <option value="date_asc">Year (Oldest → Newest)</option>
+    <option value="date_desc">Year (Newest → Oldest)</option>
+  </select>
+
+</div>
+
+<section id="data-visualization-area">
+  <div id="chart-container"></div>
+</section>
+
+<ul id="artwork-list"></ul>
+
+<ul id="bootstrap-artwork-data" style="display:none">
+  {{#each artworks}}
+    <li
+      data-id="{{id}}"
+      data-title="{{title}}"
+      data-artist-display="{{artist_display}}"
+      data-place-of-origin="{{place_of_origin}}"
+      data-date-start="{{date_start}}"
+      data-artwork-type-title="{{artwork_type_title}}"
+      data-department-title="{{department_title}}"
+      data-image-id="{{image_id}}">
+    </li>
+  {{/each}}
+</ul>
+
+<script>
+  (function () {
+    const nodes = document.querySelectorAll('#bootstrap-artwork-data > li');
+    window.artworkData = Array.from(nodes).map(li => ({
+      id: Number(li.dataset.id),
+      title: li.dataset.title || '',
+      artist_display: li.dataset.artistDisplay || '',
+      place_of_origin: li.dataset.placeOfOrigin || '',
+      date_start: li.dataset.dateStart ? Number(li.dataset.dateStart) : null,
+      artwork_type_title: li.dataset.artworkTypeTitle || '',
+      department_title: li.dataset.departmentTitle || '',
+      image_id: li.dataset.imageId || null
+    }));
+  })();
+</script>
+
+<div id="gallery" class="gallery">
+  {{#each artworks}}
+    <a
+      class="galleryphotos"
+      href="https://www.artic.edu/artworks/{{id}}"
+      rel="noopener"
+      data-artwork-id="{{id}}"
+    >
+      {{#if image_id}}
+        <img
+          class="image"
+          src="https://www.artic.edu/iiif/2/{{image_id}}/full/400,/0/default.jpg"
+          alt="{{title}}"
+        >
+      {{else}}
+        <img
+          class="image image--placeholder"
+          src="https://placehold.co/400x300?text=No+Image"
+          alt="No image available for {{title}}"
+        >
+      {{/if}}
+      <span class="gallerytitle">{{title}}</span>
+    </a>
+  {{/each}}
 </div>
 
 
-<div class="globalArtworkData">
-    <section id="Artworks">
-        <a href="#artworks" class="arrowbtn"> </a>
-        <div class="art">
-            <a href="/artworks/1" class="artbtn"></a>
-            <img src="https://api.artic.edu/api/v1/artworks?page=2&limit=100&fields=id,title,artist_display,place_of_origin,date_start,artwork_type_title,department_title,image_id" alt="artwork">
-            </a>
-        </div>
-        <div class="art">
-            <a href="/artworks/2" class="artbtn"></a>
-            <img src="https://www.artic.edu/iiif/2/2d484387-2509-5e8e-2c43-22f9981972eb/full/400,/0/default.jpg">
-            </a>
-        </div>
-        <div class="art">
-            <a href="/artworks/3" class="artbtn"></a>
-            <img src="https://www.artic.edu/iiif/2/000a60f9-baa8-3f20-3357-690f6ca0803a/full/400,/0/default.jpg">
-            </a>
-        </div>
-                <div class="art">
-            <a href="/artworks/4" class="artbtn"></a>
-            <img src="https://www.artic.edu/iiif/2/000a23d2-4abf-5b0e-6e2d-a1d25c3176a4/full/400,/0/default.jpg">
-            </a>
-        </div>
-        <div class="art">
-            <a href="/artworks/5" class="artbtn"></a>
-            <img src="https://www.artic.edu/iiif/2/000bcc48-f2f7-e6d8-6589-91d299d8c275/full/400,/0/default.jpg">
-            </a>
-        </div>
-        <div class="art">
-            <a href="/artworks/6" class="artbtn"></a>
-            <img src="https://www.artic.edu/iiif/2/000c7a89-d9f8-8e19-4a85-25acbc399865/full/400,/0/default.jpg">
-            </a>
-        </div>
-    </section>
+{{!-- D3 must load before your main.js --}}
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="/javascripts/main.js"></script>
+<footer class="footer">
+  <p>&copy; Art Institute of Chicago</p>
