@@ -12,11 +12,9 @@ var app = express();
 
 hbs.registerPartials(path.join(__dirname, 'views/partial'), err => {});
 
-import { engine } from "express-handlebars";
-app.engine("hbs", engine({
-  extname: ".hbs",
-  partialsDir: path.join(process.cwd(), "views/partial"),
-}));
+import hbs from "hbs";
+import path from "path";
+hbs.registerPartials(path.join(process.cwd(), "views/partial"));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
