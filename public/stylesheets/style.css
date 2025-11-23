@@ -1,8 +1,47 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.maintitle {
+  text-align: center; 
+  font: times new roman, serif;
+  margin-top: 6px;
+  font-size: 20px;
+  line-height: 1.3;
+
 }
 
-.Artworks {
-  
+.count {
+  text-align: center;
+}
+
+
+.gallery { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 12px; 
+
+}
+
+.gallery-item { 
+  display: block; 
+  text-decoration: none; 
+  color: inherit; 
+}
+.image { width: 100%; 
+  aspect-ratio: 4 / 3; 
+  object-fit: cover; 
+ }
+
+.image--placeholder { 
+  filter: grayscale(1); 
+  opacity: 0.85; 
+
+}
+
+
+body {
+  padding: 50px;
+  font: 20px;
+}
+
+html, body {
+  font-family: "Times New Roman", Times, serif;
+  align-items: center;
 }
