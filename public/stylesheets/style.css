@@ -19,11 +19,18 @@ html, body {
   column-gap: 16px;         
 }
 
-.gallery-item { 
-  display: block; 
-  text-decoration: none; 
-  color: inherit; 
+.galleryphotos {
+  display: inline-block;    
+  width: 100%;
+  margin: 0 0 16px;
+  break-inside: avoid;      
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+
+  color: inherit;
+  text-decoration: none;
 }
+
 .image { width: 100%; 
   aspect-ratio: 4 / 3; 
   object-fit: cover; 
